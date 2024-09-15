@@ -40,15 +40,15 @@ export default function Home() {
   }, []);
 
   const fetchRecipe = async () => {
-    axios.get('http://localhost:3001/api/recipes').then(res => setRecipe(res.data[Math.floor(Math.random() * res.data.length)]))
+    axios.get('/api/recipes').then(res => setRecipe(res.data[Math.floor(Math.random() * res.data.length)]))
   }
 
   const fetchReviews = async () => {
-    axios.get('http://localhost:3001/api/reviews').then(res => setReviews(res.data))
+    axios.get('/api/reviews').then(res => setReviews(res.data))
   }
 
   const submitReview = async () => {
-    axios.post('http://localhost:3001/api/reviews', {
+    axios.post('/api/reviews', {
       id: Date.now(),
       title: review_title,
       review: review
