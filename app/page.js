@@ -1,101 +1,198 @@
+"use client"
+import { Button } from "@/components/ui/button";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { ArrowBigDown } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/Card";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import axios from "axios";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [cakes, setCakes] = useState([])
+  const [review_title, setTitle] = useState('')
+  const [review, setReview] = useState('')
+  const [reviews, setReviews] = useState([])
+  const [recipe, setRecipe] = useState({})
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const fetchCakes = async () => {
+      const response = await fetch('/api/cakes');
+      const data = await response.json();
+      setCakes(data);
+      console.log(data)
+    };
+
+
+    fetchCakes();
+    fetchReviews()
+    fetchRecipe()
+  }, []);
+
+  const fetchRecipe = async () => {
+    axios.get('http://localhost:3001/api/recipes').then(res => setRecipe(res.data[Math.floor(Math.random() * res.data.length)]))
+  }
+
+  const fetchReviews = async () => {
+    axios.get('http://localhost:3001/api/reviews').then(res => setReviews(res.data))
+  }
+
+  const submitReview = async () => {
+    axios.post('http://localhost:3001/api/reviews', {
+      id: Date.now(),
+      title: review_title,
+      review: review
+    }).then(res => {
+      console.log(res)
+      setReview('')
+      setTitle('')
+      fetchReviews()
+    })
+  }
+
+  return (
+    <div className="h-screen ">
+      <div className="w-screen lg:h-screen sm:hidden lg:block">
+        <video autoPlay muted loop className="fixed top-0 left-0 min-w-[100%] object-fill z-[-1]">
+          <source src="https://assets.mixkit.co/videos/26640/26640-720.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="flex h-[90%] w-[100%] items-center justify-center">
+          <h2 className="text-6xl text-black font-bold border-l-4 border-l-black bg-opacity-10 bg-black p-5">Order Your Fav Cakes or Discover Recipes!</h2>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      <div className="bg-black h-auto flex flex-col items-center justify-center">
+        <h2 className="text-primary-foreground text-2xl m-4">The best. <span className="text-primary">See what our customers are loving. </span></h2>
+        <Carousel opts={{ align: "start" }} className="w-full max-w-[80%] max-h-[100%]">
+          <CarouselContent className="max-w-[90%]">
+            {cakes.map((cake, index) => (
+              <CarouselItem key={cake.id} className="md:basis-1/2 lg:basis-2/3 bg-black ">
+                <div className="p-2 ">
+                  <Card className="h-[600px] w-[600px] border-none bg-black duration-200 hover:translate-y-[-10px] hover:shadow-md">
+                    <CardContent className="flex items-center justify-center p-6">
+                      {/* Display cake image or name */}
+                      <div className="text-center">
+                        {cake.image ? (
+                          <Image
+                            src={cake.image}
+                            alt={cake.name}
+                            width={600}
+                            height={600}
+                            className="object-cover w-[500px] h-[500px] rounded-lg"
+                          />
+                        ) : (
+                          <span className="text-3xl font-semibold">{cake.name}</span>
+                        )}
+                        <h2 className="text-primary font-bold text-lg">{cake.name}</h2>
+                        <h2 className="text-primary-foreground">{cake.description}</h2>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="text-primary bg-black font-bold" />
+          <CarouselNext className="text-primary bg-black font-bold" />
+        </Carousel>
+
+      </div>
+
+      <div className="flex items-center my-20 w-full justify-center p-5">
+        <Card className="w-[800px] h-auto p-1 mt-8 bg-black border-none text-white">
+          <CardContent>
+            <CardHeader>
+              <CardTitle className="text-3xl">A Random Top Recipe</CardTitle>
+              <CardDescription>
+                One of most popular recipes viewed today.
+              </CardDescription>
+            </CardHeader>
+            <div className="flex items-center justify-evenly gap-6 ">
+              {recipe.image ? (
+                <Image
+                  src={recipe.image}
+                  alt={recipe.name}
+                  width={600}
+                  height={600}
+                  className="object-cover w-[400px] h-[350px] rounded-lg"
+                />
+              ) : (
+                <span className="text-3xl font-semibold">{recipe.name}</span>
+              )}
+              <div className="flex gap-2 flex-col">
+                <h2 className="text-white text-lg font-bold">{recipe.name}</h2>
+                <h2 className="font-bold text-white underline">Ingredients</h2>
+                <h2 className="text-secondary">{recipe.ingredients}</h2>
+                <h2 className="font-bold text-white underline">Instructions</h2>
+                <h2 className="text-secondary">{recipe.instructions}</h2>
+              </div>
+              
+            </div>
+
+          </CardContent>
+        </Card>
+      </div>
+      <div className="flex items-center justify-center h-auto p-8 flex-col bg-black text-white">
+        <h2 className="text-primary-foreground font-bold text-4xl m-4">Reviews</h2>
+        <ScrollArea className="w-[60%] h-[400px] overflow-y-scroll border rounded-lg p-3 m-6">
+          {reviews.map((review, index) => (
+            <div key={index} className="p-10">
+              <h2 className="text-xl font-bold py-2">{review.title}</h2>
+              <h2 className="text-secondary pb-6">{review.review}</h2>
+              <Separator />
+            </div>
+          ))}
+        </ScrollArea>
+      </div>
+
+      {/* customer revies */}
+      <div>
+
+      </div>
+      <div className="flex items-center w-full justify-center p-5 my-20">
+        {/* review form */}
+        <Card className="w-[800px] h-[500px] mt-8 bg-black border-none text-white">
+          <CardContent>
+            <CardHeader>
+              <CardTitle className="text-3xl">Satisfied or Unsatisfied?</CardTitle>
+              <CardDescription>
+                Leave a review or make suggestions.
+              </CardDescription>
+            </CardHeader>
+            <div className="grid gap-4 py-4">
+              <div className="flex flex-col gap-4">
+                <Label htmlFor="name" className="text-left text-xl">
+                  Title
+                </Label>
+                <Input id="name" placeHolder="eg. Great Service" onChange={(e) => setTitle(e.target.value)} value={review_title} className="col-span-3" />
+              </div>
+              <div className="flex flex-col gap-4 mt-3">
+                <Label htmlFor="username" className="text-left text-xl">
+                  Review
+                </Label>
+                <Textarea placeHolder="I'd rate this 100/10 if I could" onChange={(e) => setReview(e.target.value)} id="username" value={review} className="col-span-3" />
+              </div>
+            </div>
+            <div className="flex items-center p-3 mt-3 justify-center">
+              <Button onClick={() => submitReview()} type="submit">Save changes</Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+      <div className="bg-black p-3 mt-8 flex items-center justify-center">
+        <h2 className="text-white">© 2024 Our cakestore. All rights reserved.</h2>
+      </div>
+
     </div>
   );
 }

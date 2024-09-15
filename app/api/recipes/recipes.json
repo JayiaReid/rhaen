@@ -1,0 +1,199 @@
+[
+    {
+      "id": 1,
+      "name": "Vanilla's Dream Cake",
+      "image": "/vanilla_dream.jpg",
+      "description": "A soft and fluffy vanilla cake with a creamy buttercream frosting.",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "1/2 cup unsalted butter",
+        "1 cup whole milk",
+        "3 large eggs",
+        "2 tsp vanilla extract",
+        "1 tbsp baking powder",
+        "1/2 tsp salt"
+      ],
+      "instructions": [
+        "Preheat the oven to 350°F (175°C). Grease and flour two 9-inch cake pans.",
+        "In a large bowl, mix butter and sugar until light and fluffy. Add eggs one at a time, then vanilla.",
+        "In another bowl, combine flour, baking powder, and salt.",
+        "Add the dry ingredients to the wet ingredients alternately with the milk.",
+        "Pour the batter into the prepared pans and bake for 25-30 minutes.",
+        "Cool the cakes and frost with buttercream."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Chocolate Overload Cake",
+      "image": "/choco_o.jpeg",
+      "description": "A rich and moist chocolate cake with layers of decadent chocolate ganache.",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "2 cups sugar",
+        "3/4 cup cocoa powder",
+        "1 1/2 tsp baking powder",
+        "1 1/2 tsp baking soda",
+        "1 cup buttermilk",
+        "1/2 cup vegetable oil",
+        "2 large eggs",
+        "2 tsp vanilla extract",
+        "1 cup boiling water"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour two 9-inch round baking pans.",
+        "In a large bowl, stir together sugar, flour, cocoa, baking powder, and baking soda.",
+        "Add eggs, milk, oil, and vanilla; mix for 2 minutes on medium speed.",
+        "Stir in boiling water (batter will be thin).",
+        "Pour batter into prepared pans and bake for 30-35 minutes.",
+        "Cool completely before frosting with chocolate ganache."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Strawberry Surprise",
+      "image": "/strawberry_s.jpg",
+      "description": "Layers of vanilla cake, fresh strawberries, and whipped cream.",
+      "ingredients": [
+        "2 1/4 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "3/4 cup unsalted butter",
+        "1 cup whole milk",
+        "4 large eggs",
+        "2 tsp vanilla extract",
+        "1 tbsp baking powder",
+        "2 cups fresh strawberries",
+        "2 cups whipped cream"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour two 9-inch cake pans.",
+        "Cream butter and sugar until light and fluffy. Add eggs one at a time.",
+        "Combine flour and baking powder and add to the wet mixture alternately with milk.",
+        "Pour batter into pans and bake for 25-30 minutes.",
+        "Cool, then layer with whipped cream and fresh strawberries."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Lemon Zest Delight",
+      "image": "/lemon_z.jpeg",
+      "description": "A tangy lemon cake with a sweet lemon glaze.",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "1/2 cup unsalted butter",
+        "1/2 cup vegetable oil",
+        "4 large eggs",
+        "1/2 cup lemon juice",
+        "1 tbsp lemon zest",
+        "1 cup buttermilk",
+        "1 tbsp baking powder",
+        "1/2 tsp salt"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour a 9-inch bundt pan.",
+        "Mix butter, sugar, and oil until creamy. Add eggs, lemon juice, and zest.",
+        "Combine flour, baking powder, and salt. Add dry ingredients alternately with buttermilk.",
+        "Pour batter into the pan and bake for 35-40 minutes.",
+        "Cool and drizzle with lemon glaze."
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Carrot Walnut Cake",
+      "image": "/carrot_w.jpeg",
+      "description": "A moist and spiced carrot cake with walnuts and cream cheese frosting.",
+      "ingredients": [
+        "2 cups grated carrots",
+        "2 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "1/2 cup vegetable oil",
+        "3 large eggs",
+        "1 tsp vanilla extract",
+        "1 tbsp cinnamon",
+        "1/2 tsp nutmeg",
+        "1 tsp baking soda",
+        "1 tsp baking powder",
+        "1 cup chopped walnuts"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour two 9-inch round pans.",
+        "Mix sugar, eggs, and oil until smooth. Add grated carrots.",
+        "In a separate bowl, combine flour, baking soda, baking powder, and spices.",
+        "Add dry ingredients to the wet ingredients. Stir in walnuts.",
+        "Pour batter into pans and bake for 30-35 minutes.",
+        "Cool and frost with cream cheese frosting."
+      ]
+    },
+    {
+      "id": 6,
+      "name": " Bliss Cake",
+      "image": "/bliss.webp",
+      "description": "A flavorful banana cake topped with a creamy vanilla frosting.",
+      "ingredients": [
+        "2 cups mashed ripe bananas",
+        "2 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "1/2 cup unsalted butter",
+        "2 large eggs",
+        "1/2 cup sour cream",
+        "1 tsp vanilla extract",
+        "1 tbsp baking powder",
+        "1/2 tsp salt"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour a 9-inch round pan.",
+        "Cream butter and sugar until smooth. Add eggs and mashed bananas.",
+        "Combine flour, baking powder, and salt. Add to the wet mixture alternately with sour cream.",
+        "Pour batter into the pan and bake for 35-40 minutes.",
+        "Cool and frost with vanilla frosting."
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Paradise Cupcakes",
+      "image": "/para_cup.jpeg",
+      "description": "A tropical coconut cake topped with coconut flakes and cream cheese frosting.",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "1/2 cup unsalted butter",
+        "1 cup coconut milk",
+        "3 large eggs",
+        "1 tbsp baking powder",
+        "1/2 tsp salt",
+        "1 cup shredded coconut"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour two 9-inch pans.",
+        "Cream butter and sugar until light and fluffy. Add eggs one at a time.",
+        "Combine flour, baking powder, and salt. Add to wet mixture alternately with coconut milk.",
+        "Stir in shredded coconut. Pour batter into pans and bake for 30-35 minutes.",
+        "Cool and frost with cream cheese frosting. Sprinkle with more coconut flakes."
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Raspberry Swirl Cake",
+      "image": "/rasp_swirl.jpeg",
+      "description": "A moist vanilla cake with ribbons of fresh raspberry puree.",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "1/2 cup unsalted butter",
+        "1 cup whole milk",
+        "3 large eggs",
+        "2 tsp vanilla extract",
+        "1 tbsp baking powder",
+        "1/2 tsp salt",
+        "1 cup fresh raspberries"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour two 9-inch pans.",
+        "Cream butter and sugar until fluffy. Add eggs one at a time, then vanilla.",
+        "Mix flour, baking powder, and salt. Add to wet mixture alternately with milk.",
+        "Pour half the batter into pans. Drop spoonfuls of raspberry puree on top and swirl with a knife.",
+        "Pour the remaining batter over and bake for 30-35 minutes."
+      ]
+    }
+]

@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Strawberry Lover's",
+        "description": "Vanilla layers filled with strawberry and custard filling",
+        "image": "/strawberry_lovers.jpeg"
+    },
+    {
+        "name": "Creamy Chocolate",
+        "description": "Classic Chocolate Cream Cake",
+        "image": "/creamy_choco.jpg"
+    },
+    {
+        "name": "Natural Blueberry Cheesecake",
+        "description": "Blueberry Themed Cheesecake",
+        "image": "/bluberry.jpg"
+    },
+    {
+        "name": "Carrot Cupcakes",
+        "description": "Harper Lee's secret recipe cupcakes",
+        "image": "/carrot_cup.webp"
+    }
+]
