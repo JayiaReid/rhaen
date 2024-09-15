@@ -1,5 +1,5 @@
 
-import localFont from "next/font/local";
+// import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "./_components/Nav";
 import { ThemeProvider } from "./Theme";
