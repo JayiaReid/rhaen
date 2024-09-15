@@ -2,21 +2,61 @@
     {
         "name": "Strawberry Lover's",
         "description": "Vanilla layers filled with strawberry and custard filling",
-        "image": "/strawberry_lovers.jpeg"
+        "image": "/strawberry_lovers.jpeg",
+        "price": 34.50
     },
     {
         "name": "Creamy Chocolate",
         "description": "Classic Chocolate Cream Cake",
-        "image": "/creamy_choco.jpg"
+        "image": "/creamy_choco.jpg",
+        "price": 23.40
     },
     {
         "name": "Natural Blueberry Cheesecake",
         "description": "Blueberry Themed Cheesecake",
-        "image": "/bluberry.jpg"
+        "image": "/bluberry.jpg",
+        "price": 45.60
     },
     {
         "name": "Carrot Cupcakes",
-        "description": "Harper Lee's secret recipe cupcakes",
-        "image": "/carrot_cup.webp"
+        "description": "Harper Lee's 25 secret recipe cupcakes",
+        "image": "/carrot_cup.webp",
+        "price": 50.50
+    },
+    {
+        "name": "Cookies and Cream Cake",
+        "description": "Rich Chocolate Cake with Cookies and Cream Filling",
+        "image": "/cookies_cream.jpg",
+        "price": 31.25
+    }, 
+    {
+        "name": "Pistachio Mousse Cake",
+        "description": "Nutty Pistachio Cake with a Light Frosting",
+        "image": "/pistachio_cake.jpg",
+        "price": 36.80
+    },
+    {
+        "name": "Red Hearts Velvet",
+        "description": "Classic Red Velvet Cake with Cream Cheese Frosting",
+        "image": "/red_velvet.jpg",
+        "price": 37.90
+    },
+    {
+        "name": "Black Forest",
+        "description": "Classic Black Forest with butter cream frosting",
+        "image": "/black_forest.jpeg",
+        "price": 29.75
+    },
+    {
+        "name": "Classic Tiramisu",
+        "description": "Coffee-Soaked Ladyfingers with Mascarpone Cream",
+        "image": "/tiramisu.jpg",
+        "price": 42.20
+    },
+    {
+        "name": "Mango Mousse Cake",
+        "description": "Light and Airy Mango Mousse with a Biscuit Base",
+        "image": "/mango_mousse.avif",
+        "price": 39.00
     }
 ]

@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ArrowBigDown } from "lucide-react";
+import { ArrowBigDown, LoaderPinwheelIcon } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input";
 import axios from "axios";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 export default function Home() {
   const [cakes, setCakes] = useState([])
@@ -24,6 +25,7 @@ export default function Home() {
   const [review, setReview] = useState('')
   const [reviews, setReviews] = useState([])
   const [recipe, setRecipe] = useState({})
+  const [loading, setLoading]=useState(true)
 
   useEffect(() => {
     const fetchCakes = async () => {
@@ -37,6 +39,8 @@ export default function Home() {
     fetchCakes();
     fetchReviews()
     fetchRecipe()
+
+    if(cakes && reviews && recipe) setLoading(false);
   }, []);
 
   const fetchRecipe = async () => {
@@ -60,6 +64,10 @@ export default function Home() {
     })
   }
 
+  if (loading) return <div className="h-screen w-screen flex items-center justify-center">
+      <LoaderPinwheelIcon className="animate-spin"/>
+  </div>
+
   return (
     <div className="h-screen ">
       <div className="w-screen lg:h-screen sm:hidden lg:block">
@@ -72,15 +80,15 @@ export default function Home() {
         </div>
       </div>
       <div className="bg-black h-auto flex flex-col items-center justify-center">
-        <h2 className="text-primary-foreground text-2xl m-4">The best. <span className="text-primary">See what our customers are loving. </span></h2>
+        <h2 className="text-primary-foreground text-2xl m-4">Top Orders. <span className="text-primary">See what our customers are loving. </span></h2>
         <Carousel opts={{ align: "start" }} className="w-full max-w-[80%] max-h-[100%]">
           <CarouselContent className="max-w-[90%]">
-            {cakes.map((cake, index) => (
+            {cakes.map((cake, index) => ( 
+              index < 4 ?
               <CarouselItem key={cake.id} className="md:basis-1/2 lg:basis-2/3 bg-black ">
                 <div className="p-2 ">
                   <Card className="h-[600px] w-[600px] border-none bg-black duration-200 hover:translate-y-[-10px] hover:shadow-md">
                     <CardContent className="flex items-center justify-center p-6">
-                      {/* Display cake image or name */}
                       <div className="text-center">
                         {cake.image ? (
                           <Image
@@ -100,12 +108,12 @@ export default function Home() {
                   </Card>
                 </div>
               </CarouselItem>
-            ))}
+            : null))}
           </CarouselContent>
           <CarouselPrevious className="text-primary bg-black font-bold" />
           <CarouselNext className="text-primary bg-black font-bold" />
         </Carousel>
-
+        <Button className="my-4"><Link href={'/cakes/sellers'}>See more</Link></Button>
       </div>
 
       <div className="flex items-center my-20 w-full justify-center p-5">
@@ -138,9 +146,12 @@ export default function Home() {
               </div>
               
             </div>
-
+            <div className="text-center">
+            <Button className="my-4"><Link href={'/cakes/recipes'}>See more</Link></Button>
+            </div>
           </CardContent>
         </Card>
+        
       </div>
       <div className="flex items-center justify-center h-auto p-8 flex-col bg-black text-white">
         <h2 className="text-primary-foreground font-bold text-4xl m-4">Reviews</h2>
@@ -184,7 +195,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center p-3 mt-3 justify-center">
-              <Button onClick={() => submitReview()} type="submit">Save changes</Button>
+              <Button onClick={() => submitReview()} type="submit">Submit Review</Button>
             </div>
           </CardContent>
         </Card>

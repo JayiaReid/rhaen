@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className="bg-background"
+        className="bg-black"
       >
         <ThemeProvider
             attribute="class"
@@ -25,6 +25,7 @@ export default function RootLayout({ children }) {
           >
             <Nav/>
         {children}
+        
           </ThemeProvider>
         
       </body>
