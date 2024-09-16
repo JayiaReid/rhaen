@@ -18,6 +18,7 @@ import axios from "axios";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import CardComp from "./_components/Card";
 
 export default function Home() {
   const [cakes, setCakes] = useState([])
@@ -35,10 +36,10 @@ export default function Home() {
       console.log(data)
     };
 
-
     fetchCakes();
     fetchReviews()
-    fetchRecipe()
+    fetchRecipe();
+   
 
     if(cakes && reviews && recipe) setLoading(false);
   }, []);
@@ -87,25 +88,7 @@ export default function Home() {
               index < 4 ?
               <CarouselItem key={cake.id} className="md:basis-1/2 lg:basis-2/3 bg-black ">
                 <div className="p-2 ">
-                  <Card className="h-[600px] w-[600px] border-none bg-black duration-200 hover:translate-y-[-10px] hover:shadow-md">
-                    <CardContent className="flex items-center justify-center p-6">
-                      <div className="text-center">
-                        {cake.image ? (
-                          <Image
-                            src={cake.image}
-                            alt={cake.name}
-                            width={600}
-                            height={600}
-                            className="object-cover w-[500px] h-[500px] rounded-lg"
-                          />
-                        ) : (
-                          <span className="text-3xl font-semibold">{cake.name}</span>
-                        )}
-                        <h2 className="text-primary font-bold text-lg">{cake.name}</h2>
-                        <h2 className="text-primary-foreground">{cake.description}</h2>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <CardComp cake={cake} price={false}/>
                 </div>
               </CarouselItem>
             : null))}

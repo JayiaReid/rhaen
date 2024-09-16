@@ -1,0 +1,46 @@
+[
+  {
+    "cake_id": "SL19",
+    "rating": 10
+  },
+  {
+    "cake_id": "CC46",
+    "rating": 3
+  },
+  {
+    "cake_id": "NB10",
+    "rating": 10
+  },
+  {
+    "cake_id": "CC56",
+    "rating": 10
+  },
+  {
+    "cake_id": "CC01",
+    "rating": 10
+  },
+  {
+    "cake_id": "PM87",
+    "rating": 10
+  },
+  {
+    "cake_id": "RH54",
+    "rating": 4
+  },
+  {
+    "cake_id": "BF90",
+    "rating": 10
+  },
+  {
+    "cake_id": "CT32",
+    "rating": 10
+  },
+  {
+    "cake_id": "MM65",
+    "rating": 10
+  },
+  {
+    "cake_id": "CC46",
+    "rating": "9"
+  }
+]

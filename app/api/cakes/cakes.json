@@ -1,62 +1,102 @@
 [
-    {
+    {   
+        "id": "SL19",
         "name": "Strawberry Lover's",
         "description": "Vanilla layers filled with strawberry and custard filling",
         "image": "/strawberry_lovers.jpeg",
-        "price": 34.50
+        "price": "34.50 - 55.30",
+        "small": 34.50,
+        "medium": 42.30,
+        "large": 55.30
     },
     {
+        "id": "CC46",
         "name": "Creamy Chocolate",
         "description": "Classic Chocolate Cream Cake",
         "image": "/creamy_choco.jpg",
-        "price": 23.40
+        "price": "23.40 - 48.00",
+        "small": 23.40,
+        "medium": 35.50,
+        "large": 48.00
     },
     {
+        "id": "NB10",
         "name": "Natural Blueberry Cheesecake",
         "description": "Blueberry Themed Cheesecake",
         "image": "/bluberry.jpg",
-        "price": 45.60
+        "price": "30.00 - 45.60",
+        "small": 30.00,
+        "medium": 38.00,
+        "large": 45.60
     },
     {
+        "id": "CC56",
         "name": "Carrot Cupcakes",
         "description": "Harper Lee's 25 secret recipe cupcakes",
         "image": "/carrot_cup.webp",
-        "price": 50.50
+        "price": "35.50 - 50.50",
+        "small": 35.50,
+        "medium": 42.50,
+        "large": 50.50
     },
     {
+        "id": "CC01",
         "name": "Cookies and Cream Cake",
         "description": "Rich Chocolate Cake with Cookies and Cream Filling",
         "image": "/cookies_cream.jpg",
-        "price": 31.25
+        "price": "25.00 - 31.25",
+        "small": 25.00,
+        "medium": 28.50,
+        "large": 31.25
     }, 
     {
+        "id": "PM87",
         "name": "Pistachio Mousse Cake",
         "description": "Nutty Pistachio Cake with a Light Frosting",
         "image": "/pistachio_cake.jpg",
-        "price": 36.80
+        "price": "25.50 - 36.80",
+        "small": 25.50,
+        "medium": 30.00,
+        "large": 36.80
     },
     {
+        "id": "RH54",
         "name": "Red Hearts Velvet",
         "description": "Classic Red Velvet Cake with Cream Cheese Frosting",
         "image": "/red_velvet.jpg",
-        "price": 37.90
+        "price": "29.90 - 37.90",
+        "small": 29.90,
+        "medium": 34.00,
+        "large": 37.90
     },
     {
+        "id": "BF90",
         "name": "Black Forest",
         "description": "Classic Black Forest with butter cream frosting",
         "image": "/black_forest.jpeg",
-        "price": 29.75
+        "price": "20.00 - 29.75",
+        "small": 20.00,
+        "medium": 25.00,
+        "large": 29.75
     },
     {
+        "id": "CT32",
         "name": "Classic Tiramisu",
         "description": "Coffee-Soaked Ladyfingers with Mascarpone Cream",
         "image": "/tiramisu.jpg",
-        "price": 42.20
+        "price": "32.00 - 42.20",
+        "small": 32.00,
+        "medium": 37.00,
+        "large": 42.20
     },
     {
+        "id": "MM65",
         "name": "Mango Mousse Cake",
         "description": "Light and Airy Mango Mousse with a Biscuit Base",
         "image": "/mango_mousse.avif",
-        "price": 39.00
+        "price": "30.00 - 39.00",
+        "small": 30.00,
+        "medium": 35.00,
+        "large": 39.00
     }
 ]

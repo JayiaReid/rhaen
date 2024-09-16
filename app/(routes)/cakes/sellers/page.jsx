@@ -1,4 +1,5 @@
 "use client"
+import CardComp from '@/app/_components/Card'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
 import { Card, CardContent } from '@/components/ui/card'
 import { LoaderPinwheelIcon } from 'lucide-react'
@@ -57,11 +58,11 @@ const Page = () => {
         <Breadcrumb>
           <BreadcrumbList className="text-xl">
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink className="hover:text-primary" href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/cakes">Cakes</BreadcrumbLink>
+              <BreadcrumbLink className="hover:text-primary" href="/cakes">Cakes</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -103,26 +104,8 @@ const Page = () => {
 
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5 bg-black'>
         {filteredCakes.map((cake) => (
-          <Card key={cake.name} className="h-[600px] w-full border-none bg-black duration-200 hover:translate-y-[-10px] hover:shadow-md">
-            <CardContent className="flex items-center justify-center p-6">
-              <div className="text-center">
-                {cake.image ? (
-                  <Image
-                    src={cake.image}
-                    alt={cake.name}
-                    width={500}
-                    height={500}
-                    className="object-cover w-[500px] h-[500px] rounded-lg"
-                  />
-                ) : (
-                  <span className="text-3xl font-semibold">{cake.name}</span>
-                )}
-                <h2 className="text-primary font-bold text-lg">{cake.name}</h2>
-                <h2 className="text-primary-foreground">{cake.description}</h2>
-                <p className="text-primary font-bold text-lg">${cake.price.toFixed(2)}</p>
-              </div>
-            </CardContent>
-          </Card>
+          <CardComp key={cake.id} cake={cake} price={true}/>
+         
         ))}
       </div>
     </div>

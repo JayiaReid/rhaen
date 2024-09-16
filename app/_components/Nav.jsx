@@ -1,5 +1,5 @@
 "use client"
-import { Heart, ListFilter, SearchIcon, ShoppingBasket, User2Icon } from 'lucide-react'
+import { CakeSliceIcon, Heart, ListFilter, SearchIcon, ShoppingBasket, User2Icon } from 'lucide-react'
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { Input } from '@/components/ui/input'
@@ -14,11 +14,13 @@ const Nav = () => {
             <div className='flex text-primary items-center justify-around'>
              {showSearch?   <div className='flex items-center'>
                      <Input className='outline-none' onChange={(e)=>setSearch(e.target.value)} value={search} />
-                    <Link href={`/cakes/search/${search}`} className='p-1' >
+                    {search!==""?<Link href={`/cakes/search/${search}`} className='p-1' >
                         <SearchIcon strokeWidth={0.75} size={30} />
-                    </Link>
+                    </Link>: null}
                 </div> : <SearchIcon className='cursor-pointer' strokeWidth={0.75} size={30} onClick={()=>setShowSearch(true)} />}
-
+            <Link href={'/cakes'} className='p-1'>
+                                <CakeSliceIcon strokeWidth={0.75} size={30} />
+                            </Link>
                 <Link href={'/wishlist'} className='p-1'>
                     <Heart strokeWidth={0.75} size={30} />
                 </Link>
@@ -28,6 +30,7 @@ const Nav = () => {
                 <Link href={'/cart'} className='p-1'>
                     <ShoppingBasket strokeWidth={0.75} size={30} />
                 </Link>
+                
                 {/* <ListFilter strokeWidth={0.75} onClick={()=>setShowCat(!showCat)}/> */}
             </div>
 

@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
         <ThemeProvider
             attribute="class"
             defaultTheme="dark"
-            enableSystem
+            // enableSystem
             disableTransitionOnChange
           >
             <Nav/>
