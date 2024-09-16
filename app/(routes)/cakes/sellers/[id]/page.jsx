@@ -60,7 +60,7 @@ const page = () => {
                 </Breadcrumb>
             </div>
             <div className='flex justify-center gap-10 p-5'> 
-                <Card key={cake.id} className="h-[900px] w-[800px] border-none bg-black duration-200">
+                <Card key={cake.id} className="h-[600px] w-[800px] border-none bg-black duration-200">
                     <CardContent className="p-6">
                         <div className="text-center">
                             {cake.image ? (

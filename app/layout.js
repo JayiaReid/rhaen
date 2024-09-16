@@ -3,7 +3,9 @@
 import "./globals.css";
 import Nav from "./_components/Nav";
 import { ThemeProvider } from "./Theme";
+import { ClerkProvider } from "@clerk/nextjs";
 // import { useState } from "react";
+import { light } from '@clerk/themes';
 
 export const metadata = {
   title: "Rhaen",
@@ -13,6 +15,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
 
   return (
+    <ClerkProvider
+    appearance={{
+      baseTheme: light,
+      variables: { colorPrimary: '#E11D48', colorBackground:'#fff', fontSize:'1rem', spacingUnit:'1rem' }
+    }}>
     <html lang="en">
       <body
         className="bg-black"
@@ -25,11 +32,12 @@ export default function RootLayout({ children }) {
           >
             <Nav/>
         {children}
-        
+        {/* contact in footer */}
           </ThemeProvider>
         
       </body>
     </html>
+    </ClerkProvider>
   );
 }
 
