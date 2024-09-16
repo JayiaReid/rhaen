@@ -15,8 +15,11 @@ import {
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Input } from '@/components/ui/input'
 import axios from 'axios'
+import { useUser } from '@clerk/nextjs'
+import { useRouter } from 'next/navigation'
 
 const Details = ({ cake }) => {
+    const {user} = useUser()
     const [price, setPrice] = useState(cake.price)
     const [size, setSize] = useState(null)
     const [extra, setExtra] = useState('')
@@ -26,6 +29,25 @@ const Details = ({ cake }) => {
     const [num_ratings, SetNum] = useState(0)
     const [total_ratings, setTotal] = useState(0)
     const [rate, setRate]=useState(0)
+    const router = useRouter()
+
+    const addToCart = async ()=>{
+        axios.post('/api/cart',{
+            id: Date.now(),
+            user_id: user.id,
+            cake_id: cake.id,
+            quantity: quan,
+            price: subtotal,
+            size: size,
+            notes: extra,
+        }).then(res=>{
+            setSize(null)
+            setSubTotal(0)
+            setPrice(cake.price)
+            setExtra('')
+            router.push('/cart')
+        })
+    }
 
     useEffect(() => {
         setSubTotal((price * quan).toFixed(2))
@@ -50,6 +72,7 @@ const Details = ({ cake }) => {
         SetNum(num)
         setTotal(total_ratings)
         setAvg(total_ratings/num)
+        
     }
 
     const addRating = async ()=>{
@@ -59,6 +82,14 @@ const Details = ({ cake }) => {
         }).then(res=>console.log(res))
         setRate(0)
         getRating()
+    }
+
+    const addToWishlist = async () =>{
+        axios.post('/api/wishlist', {
+            item_id: Date.now(),
+            user_id: user.id,
+            ...cake
+        }).then(res=>console.log(res))
     }
 
     return (
@@ -131,13 +162,13 @@ const Details = ({ cake }) => {
             <Textarea placeHolder="Add extra details here" value={extra} onChange={(e) => setExtra(e.target.value)} />
 
             <div className='flex gap-4 items-center'>
-                <Button>Add to Cart</Button>
-                <HeartIcon />
+                <Button disabled={!(size) && quan<1} onClick={()=>addToCart()}>Add to Cart</Button>
+                <HeartIcon className='cursor-pointer' onClick={()=>addToWishlist()}/>
             </div>
-
 
         </div>
     )
 }
 
 export default Details
+

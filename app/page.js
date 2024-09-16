@@ -20,6 +20,8 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import CardComp from "./_components/Card";
 
+// add to toasts, add account page, checkout
+
 export default function Home() {
   const [cakes, setCakes] = useState([])
   const [review_title, setTitle] = useState('')
@@ -28,21 +30,24 @@ export default function Home() {
   const [recipe, setRecipe] = useState({})
   const [loading, setLoading]=useState(true)
 
-  useEffect(() => {
-    const fetchCakes = async () => {
-      const response = await fetch('/api/cakes');
-      const data = await response.json();
-      setCakes(data);
-      console.log(data)
-    };
-
-    fetchCakes();
-    fetchReviews()
-    fetchRecipe();
-   
-
-    if(cakes && reviews && recipe) setLoading(false);
+  useEffect( () => {
+    
+    const fetchData = async ()=>{
+      await fetchCakes();
+    await fetchReviews()
+    await fetchRecipe();
+    setLoading(false);
+    }
+    
+   fetchData()
   }, []);
+
+  const fetchCakes = async () => {
+    const response = await fetch('/api/cakes');
+    const data = await response.json();
+    setCakes(data);
+    console.log(data)
+  };
 
   const fetchRecipe = async () => {
     axios.get('/api/recipes').then(res => setRecipe(res.data[Math.floor(Math.random() * res.data.length)]))
@@ -66,7 +71,7 @@ export default function Home() {
   }
 
   if (loading) return <div className="h-screen w-screen flex items-center justify-center">
-      <LoaderPinwheelIcon className="animate-spin"/>
+      <LoaderPinwheelIcon className="animate-spin text-primary"/>
   </div>
 
   return (
@@ -122,10 +127,10 @@ export default function Home() {
               )}
               <div className="flex gap-2 flex-col">
                 <h2 className="text-white text-lg font-bold">{recipe.name}</h2>
-                <h2 className="font-bold text-white underline">Ingredients</h2>
-                <h2 className="text-secondary">{recipe.ingredients}</h2>
-                <h2 className="font-bold text-white underline">Instructions</h2>
-                <h2 className="text-secondary">{recipe.instructions}</h2>
+                <h2 className="font-bold text-primary underline">Ingredients</h2>
+                <h2 className="text-white">{recipe.ingredients}</h2>
+                <h2 className="font-bold text-primary underline">Instructions</h2>
+                <h2 className="text-white">{recipe.instructions}</h2>
               </div>
               
             </div>
@@ -141,15 +146,14 @@ export default function Home() {
         <ScrollArea className="w-[60%] h-[400px] overflow-y-scroll border rounded-lg p-3 m-6">
           {reviews.map((review, index) => (
             <div key={index} className="p-10">
-              <h2 className="text-xl font-bold py-2">{review.title}</h2>
-              <h2 className="text-secondary pb-6">{review.review}</h2>
+              <h2 className="text-xl text-primary font-bold py-2">{review.title}</h2>
+              <h2 className="text-white pb-6">{review.review}</h2>
               <Separator />
             </div>
           ))}
         </ScrollArea>
       </div>
 
-      {/* customer revies */}
       <div>
 
       </div>

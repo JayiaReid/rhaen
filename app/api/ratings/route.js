@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 
 export async function POST(req){
-
+// status 500
     const rating = await req.json()
 
     const filePath = path.join(process.cwd(), "/app/api/ratings/ratings.json")

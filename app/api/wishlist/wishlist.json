@@ -1,0 +1,25 @@
+[
+  {
+    "item_id": "0001",
+    "user_id": "user_2mALUASiLfHtI7zkbEvq7BAX6r8",
+    "id": "CC56",
+    "name": "Carrot Cupcakes",
+    "description": "Harper Lee's 25 secret recipe cupcakes",
+    "image": "/carrot_cup.webp",
+    "price": "35.50 - 50.50",
+    "small": 35.5,
+    "medium": 42.5,
+    "large": 50.5
+  },
+  {
+    "user_id": "user_2mALUASiLfHtI7zkbEvq7BAX6r8",
+    "id": "PM87",
+    "name": "Pistachio Mousse Cake",
+    "description": "Nutty Pistachio Cake with a Light Frosting",
+    "image": "/pistachio_cake.jpg",
+    "price": "25.50 - 36.80",
+    "small": 25.5,
+    "medium": 30,
+    "large": 36.8
+  }
+]

@@ -47,7 +47,7 @@ const Page = () => {
   if (loading) {
     return (
       <div className='h-screen w-screen flex items-center justify-center'>
-        <LoaderPinwheelIcon className='animate-spin' />
+        <LoaderPinwheelIcon className='animate-spin text-primary' />
       </div>
     )
   }

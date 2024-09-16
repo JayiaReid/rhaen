@@ -81,15 +81,15 @@ const page = () => {
                 <div className="flex h-[600px] flex-col p-6 gap-8 text-white w-[600px]">
                     <h2 className="text-primary text-2xl font-bold">{recipe.name}</h2>
                     <h2 className="font-bold text-xl text-white underline">Ingredients</h2>
-                    <ul className="text-secondary text-lg">
+                    <ul className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-lg">
                         {recipe.ingredients.map((item, key) => (
-                            <li key={key}>{item}</li>
+                            <li className='bg-primary rounded-lg p-3 text-sm text-white w-26' key={key}>{item}</li>
                         ))}
                     </ul>
                     <h2 className="font-bold text-xl text-white underline">Instructions</h2>
-                    <ul className="text-secondary text-lg">
+                    <ul className="text-white text-lg">
                         {recipe.instructions.map((item, key) => (
-                            <li key={key}>{item}</li>
+                            <li key={key}>{key+1}. {item}</li>
                         ))}
                     </ul>
                 </div>

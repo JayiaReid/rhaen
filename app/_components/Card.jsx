@@ -1,4 +1,6 @@
+import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { Trash } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -22,7 +24,7 @@ const CardComp = ({cake, price}) => {
             )}
             <h2 className="text-primary font-bold text-lg">{cake.name}</h2>
             <h2 className="text-primary-foreground">{cake.description}</h2>
-            {price? <p className="text-primary font-bold text-lg">${cake.price}</p>:null}
+            {price? <h2 className="text-primary font-bold text-lg">${cake.price}</h2>:null}
           </div>
         </CardContent>
       </Card>
