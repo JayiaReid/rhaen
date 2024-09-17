@@ -77,6 +77,7 @@ const Details = ({ cake }) => {
 
     const addRating = async ()=>{
         axios.post('/api/ratings',{
+            id: Date.now(),
             cake_id: cake.id,
             rating: rate
         }).then(res=>console.log(res))

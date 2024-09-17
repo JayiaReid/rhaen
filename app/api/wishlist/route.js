@@ -1,53 +1,92 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { Pool } from 'pg';
 
-export async function POST(req){
+const pool = new Pool({
+  connectionString: process.env.POSTGRES_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
+});
 
-    const wishlistItem = await req.json()
 
-    const filePath = path.join(process.cwd(), "/app/api/wishlist/wishlist.json")
-    
-    const fileData = await fs.readFile(filePath, "utf8")
+export async function POST(req) {
+  const wishlistItem = await req.json();
 
-    const wishlists = JSON.parse(fileData)
+  const query = `
+    INSERT INTO wishlist (item_id, user_id, id, name, description, image, price, small, medium, large)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    RETURNING *;
+  `;
 
-    wishlists.push(wishlistItem)
+  const values = [
+    wishlistItem.item_id,
+    wishlistItem.user_id,
+    wishlistItem.id,
+    wishlistItem.name,
+    wishlistItem.description,
+    wishlistItem.image,
+    wishlistItem.price,
+    wishlistItem.small,
+    wishlistItem.medium,
+    wishlistItem.large
+  ];
 
-    await fs.writeFile(filePath, JSON.stringify(wishlists, null, 2))
-
-    return new Response(JSON.stringify({ message: 'wishlist item added!' }), {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+  try {
+    const res = await pool.query(query, values);
+    return new Response(JSON.stringify({ message: 'Wishlist item added!', wishlistItem: res.rows[0] }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: 'Error adding item to wishlist' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 }
 
-export async function GET(){
-    const filePath = path.join(process.cwd(), "/app/api/wishlist/wishlist.json")
-    const fileData = await fs.readFile(filePath, "utf8")
-    const wishlists=JSON.parse(fileData);
-      return new Response(JSON.stringify(wishlists), {
-        headers: { 'Content-Type': 'application/json' },
-      });
+
+export async function GET() {
+  const query = 'SELECT * FROM wishlist';
+
+  try {
+    const res = await pool.query(query);
+    return new Response(JSON.stringify(res.rows), {
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: 'Error fetching wishlist items' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 }
+
 
 export async function DELETE(req) {
   const { item_id } = await req.json();
 
-  const filePath = path.join(process.cwd(), "/app/api/wishlist/wishlist.json");
+  const query = `
+    DELETE FROM wishlist
+    WHERE item_id = $1
+    RETURNING *;
+  `;
 
-  const fileData = await fs.readFile(filePath, "utf8");
-  const wishlists = JSON.parse(fileData);
+  try {
+    const res = await pool.query(query, [item_id]);
 
-  const updatedWishlists = wishlists.filter(item => item.item_id !== item_id);
-
-  await fs.writeFile(filePath, JSON.stringify(updatedWishlists, null, 2));
-
-  return new Response(JSON.stringify({ message: "wishlist item deleted!" }), {
-    status: 200,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+    return new Response(JSON.stringify({ message: 'Wishlist item deleted!' }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: 'Error deleting wishlist item' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 }

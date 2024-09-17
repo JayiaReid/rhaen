@@ -33,6 +33,7 @@ const CartItem = ({ item, refreshData }) => {
 
     const addToWishlist = async () =>{
         axios.post('/api/wishlist', {
+            id: Date.now(),
             user_id: item.user_id,
             ...cake
         }).then(res=>console.log(res))

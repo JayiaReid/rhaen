@@ -38,6 +38,7 @@ const userAccount = () => {
       {/* wishlist api */}
       {/* previous orders */}
       {/* pending orders */}
+      <UserButton/>
     </div>
   )
 }
