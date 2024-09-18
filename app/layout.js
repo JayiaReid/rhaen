@@ -33,7 +33,9 @@ export default function RootLayout({ children }) {
           >
             <Nav/>
         {children}
-        {/* contact in footer */}
+        <div className="bg-black p-3 mt-8 flex items-center justify-center">
+        <h2 className="text-white">© 2024 Our cakestore. All rights reserved.</h2>
+      </div>
           </ThemeProvider>
         
       </body>

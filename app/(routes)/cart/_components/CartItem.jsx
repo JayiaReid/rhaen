@@ -6,7 +6,7 @@ import { ArrowDown, HeartIcon, LoaderPinwheelIcon, TrashIcon } from 'lucide-reac
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
-const CartItem = ({ item, refreshData }) => {
+const CartItem = ({ item, refreshData, noextra }) => {
     const [cake, setCake] = useState({})
     const [loading, setLoading] = useState(true)
     const [price, setPrice] = useState(0)
@@ -16,7 +16,7 @@ const CartItem = ({ item, refreshData }) => {
     const [subtotal, setSubTotal] = useState(item.price)
 
     useEffect(() => {
-        axios.get('api/cakes').then(res => {
+        axios.get('/api/cakes').then(res => {
             const filtered = res.data.filter(cake => cake.id === item.cake_id)
             console.log(filtered)
             setCake(filtered[0])
@@ -50,10 +50,10 @@ const CartItem = ({ item, refreshData }) => {
     return (
         <div className='flex w-auto border rounded-lg m-5 gap-4 h-[200px]'>
             <Image src={cake.image} width={250} height={200} className='p-4 rounded-lg object-cover' />
-            <div className='flex w-full flex-col gap-2 justify-between'>
+            <div className={`${noextra? "" :'flex w-full flex-col gap-2 justify-between'}`}>
                 <div className='p-3 flex flex-col gap-2'>
                     <h2 className='text-2xl text-primary'>{cake.name}</h2>
-                    <div>
+                    {noextra? null: <div>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button className='bg-primary outline-none'>size: {size} <ArrowDown size={12}/></Button>
@@ -68,11 +68,11 @@ const CartItem = ({ item, refreshData }) => {
                                 </DropdownMenuRadioGroup>
                             </DropdownMenuContent>
                         </DropdownMenu>
-                    </div>
+                    </div>}
                 </div>
                 <div className='flex p-3 w-full justify-between items-center text-white'>
                     <h2 className='text-2xl text-white'>${subtotal}</h2>
-                    <div className='flex w-full gap-2 p-3 justify-end items-center'>
+                    {noextra? null :<div className='flex w-full gap-2 p-3 justify-end items-center'>
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                     <Button className={`${quan > 0 ? 'bg-primary outline-none' : 'bg-transparent outline outline-secondary-foreground'}`}>quantity: {quan} <ArrowDown size={12}/></Button>
@@ -89,9 +89,9 @@ const CartItem = ({ item, refreshData }) => {
                                     </DropdownMenuRadioGroup>
                                 </DropdownMenuContent>
                             </DropdownMenu>
-                        </div>
-                        <HeartIcon onClick={()=>{addToWishlist();deleteItem();}} className='cursor-pointer p-0.5'/>
-                        <TrashIcon onClick={()=>{deleteItem()}} className='cursor-pointer p-0.5'/>
+                        </div>}
+                        {noextra? null :<HeartIcon onClick={()=>{addToWishlist();deleteItem();}} className='cursor-pointer p-0.5'/>}
+                        {noextra? null :<TrashIcon onClick={()=>{deleteItem()}} className='cursor-pointer p-0.5'/>}
                 </div>
             </div>
 

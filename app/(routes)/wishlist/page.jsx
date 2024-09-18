@@ -6,11 +6,13 @@ import { LoaderPinwheelIcon } from 'lucide-react'
 import { useUser } from '@clerk/nextjs'
 import CardComp from '@/app/_components/Card'
 import axios from 'axios'
+import { useRouter } from 'next/navigation'
 
 const Wishlist = () => {
-  const { user, isLoaded } = useUser()
+  const { user, isLoaded, isSignedIn } = useUser()
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
 
   const getItems = async () => {
     axios.get('/api/wishlist').then(res => {
@@ -24,6 +26,12 @@ const Wishlist = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      router.push('/sign-in');
+    }
+  }, [isSignedIn, user, router]);
 
   const deleteItem = async (id)=>{
     axios.delete('/api/wishlist', { data: { item_id: id } }).then(res=>{console.log(res, id); getItems()})

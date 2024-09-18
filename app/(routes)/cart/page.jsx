@@ -6,15 +6,24 @@ import CartItem from './_components/CartItem'
 import { Button } from '@/components/ui/button'
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb'
 import { LoaderPinwheelIcon } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const Cart = () => {
   // const [delivery, setDel] = useState(false)
   // const [fee, setFee] = useState(0)
-  const { user, isLoaded } = useUser()
+  const { user, isLoaded, isSignedIn } = useUser()
   const [items, setItems] = useState([])
   const [total, setTotal] = useState(0)
   const [count, setCount] = useState(0)
   const [loading, setLoading] = useState(true)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      router.push('/sign-in');
+    }
+  }, [isSignedIn, user, router]);
 
   const getItems = async () => {
     axios.get('/api/cart').then(res => {
@@ -26,7 +35,7 @@ const Cart = () => {
         setItems(filteredItems)
         let total = 0
         let count = 0
-        items.forEach(item => {
+        filteredItems.forEach(item => {
           total += Number(item.price)
           count++
         })
@@ -77,7 +86,7 @@ const Cart = () => {
         <div className='h-[200px] border m-5 rounded-lg p-3 justify-evenly flex flex-col gap-4'>
           <h2 className='text-primary text-3xl'>Order Summary</h2>
           <h2 className='text-white text-right text-2xl'>CA${total}</h2>
-          <Button className='w-full'>Checkout ({count})</Button>
+          <Link href={'/cart/order'}><Button className='w-full'>Checkout ({count})</Button></Link>
         </div>
       </div>
     </div>
