@@ -6,6 +6,7 @@ import { ThemeProvider } from "./Theme";
 import { ClerkProvider } from "@clerk/nextjs";
 // import { useState } from "react";
 import { light } from '@clerk/themes';
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "Rhaen",
@@ -33,6 +34,7 @@ export default function RootLayout({ children }) {
           >
             <Nav/>
         {children}
+        <Toaster />
         <div className="bg-black p-3 mt-8 flex items-center justify-center">
         <h2 className="text-white">© 2024 Our cakestore. All rights reserved.</h2>
       </div>

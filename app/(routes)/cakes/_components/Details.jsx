@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input'
 import axios from 'axios'
 import { useUser } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
+import { toast } from '@/hooks/use-toast'
 
 const Details = ({ cake }) => {
     const {user} = useUser()
@@ -41,6 +42,10 @@ const Details = ({ cake }) => {
             size: size,
             notes: extra,
         }).then(res=>{
+            toast({
+                title: "Item added to cart",
+                description: "ps: you can edit order in cart"
+            })
             setSize(null)
             setSubTotal(0)
             setPrice(cake.price)
@@ -80,7 +85,11 @@ const Details = ({ cake }) => {
             id: Date.now(),
             cake_id: cake.id,
             rating: rate
-        }).then(res=>console.log(res))
+        }).then(res=>{
+            toast({
+                title: "Rating added!"
+            })
+        })
         setRate(0)
         getRating()
     }
@@ -90,7 +99,11 @@ const Details = ({ cake }) => {
             item_id: Date.now(),
             user_id: user.id,
             ...cake
-        }).then(res=>console.log(res))
+        }).then(res=>{
+            toast({
+                title: "Cake added to wishlist!"
+            })
+        })
     }
 
     return (

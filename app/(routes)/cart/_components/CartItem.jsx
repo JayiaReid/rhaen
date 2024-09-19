@@ -1,6 +1,7 @@
 "use client"
 import { Button } from '@/components/ui/button'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { toast } from '@/hooks/use-toast'
 import axios from 'axios'
 import { ArrowDown, HeartIcon, LoaderPinwheelIcon, TrashIcon } from 'lucide-react'
 import Image from 'next/image'
@@ -36,7 +37,12 @@ const CartItem = ({ item, refreshData, noextra }) => {
             id: Date.now(),
             user_id: item.user_id,
             ...cake
-        }).then(res=>console.log(res))
+        }).then(res=>{
+            // delete item from cart
+            toast({
+                title: "item moved to wishlist"
+            })
+        })
     }
 
     const deleteItem = async ()=>{
@@ -48,8 +54,8 @@ const CartItem = ({ item, refreshData, noextra }) => {
     </div>
 
     return (
-        <div className='flex w-auto border rounded-lg m-5 gap-4 h-[200px]'>
-            <Image src={cake.image} width={250} height={200} className='p-4 rounded-lg object-cover' />
+        <div className={`${noextra? 'flex-col h-[300px] w-[300px] ljustify-center items-start': 'flex-row w-auto h-[200px] gap-4'} flex  border rounded-lg m-5  `}>
+            <Image src={cake.image} width={250} height={200} className={`${noextra? 'h-[200px]' : null} p-4 rounded-lg object-cover`} />
             <div className={`${noextra? "" :'flex w-full flex-col gap-2 justify-between'}`}>
                 <div className='p-3 flex flex-col gap-2'>
                     <h2 className='text-2xl text-primary'>{cake.name}</h2>

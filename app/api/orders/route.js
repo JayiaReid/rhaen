@@ -1,5 +1,4 @@
-import { promises as fs } from "fs";
-import path from "path";
+
 import { Pool } from 'pg';
 
 const pool = new Pool({
@@ -13,14 +12,14 @@ export async function POST(req) {
   const order = await req.json();
 
   const query = `
-    INSERT INTO orders (user_id,cart_items total_price, delivery, ready_date, status, address)
+    INSERT INTO orders (user_id, cart_items, total_price, delivery, ready_date, status, address)
     VALUES ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;
   `;
 
   const values = [
     order.user_id,
-    order.cart_items,
+    JSON.stringify(order.cart_items),
     order.total_price,
     order.delivery,
     order.ready_date,
@@ -48,6 +47,7 @@ export async function GET() {
   const query = 'SELECT * FROM orders';
   try {
     const res = await pool.query(query);
+    
     return new Response(JSON.stringify(res.rows), {
       headers: { 'Content-Type': 'application/json' },
     });

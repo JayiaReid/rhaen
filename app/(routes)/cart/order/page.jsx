@@ -10,7 +10,8 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
 import { Textarea } from '@/components/ui/textarea'
 import { Calendar } from '@/components/ui/calendar'
 import { Button } from '@/components/ui/button'
-
+import { toast } from '@/hooks/use-toast'
+import emailjs from '@emailjs/browser'
 
 const page = () => {
     const { user, isLoaded, isSignedIn } = useUser()
@@ -23,10 +24,11 @@ const page = () => {
     const [fee, setFee] = useState(0)
     const [address, setAddress] = useState("")
     const [total, setTotal] = useState(0)
+    const [state, setState] = useState(0)
+    const [minReady, setMin] = useState(null)
 
     const router = useRouter()
 
-    // Calculate the ready date based on items' quantity
     useEffect(() => {
         let totalQuan = 0
 
@@ -34,12 +36,12 @@ const page = () => {
             totalQuan += Number(item.quantity)
         })
 
-        // Logic for calculating the ready date
         let additionalDays = Math.floor(totalQuan / 3) * 2;
         let today = new Date();
         let minReady = new Date(today);
-        minReady.setDate(minReady.getDate() + 14 + additionalDays); // Adds 14 days + extra days
-        setReadyDate(minReady); // Set the calculated ready date
+        minReady.setDate(minReady.getDate() + 14 + additionalDays);
+        setReadyDate(minReady);
+        setMin(minReady)
     }, [items])
 
     const getItems = async () => {
@@ -63,6 +65,44 @@ const page = () => {
                 setLoading(false)
             }
         })
+    }
+
+    const placeOrder = async () => {
+        const confirmation = confirm('Confirm Purchase?')
+        if (confirmation) {
+            axios.post('/api/orders', {
+                user_id: user.id,
+                cart_items: items,
+                total_price: total,
+                delivery: delivery,
+                ready_date: readyDate,
+                address: address
+            }).then(res => {
+                console.log(res)
+                toast({
+                    title: "Order Placed",
+                    description: `Order will be ready ${readyDate.toLocaleDateString()}. you will be emailed about further details when order is ready. Go to account to see order details.`,
+                })
+                emailjs.send("Rhaen", "template_o6ezvob", {
+                    from_name: user.fullName,
+                    user_id: user.id,
+                    cart_items: JSON.stringify(items),
+                    total_price: total,
+                    delivery: delivery,
+                    ready_date: readyDate,
+                    address: address? address: 'no address: pick up',
+                    status: "not started"
+                }, "DgZmTosms004jCTIi")
+                items.forEach(item => {
+                    axios.delete('/api/cart', { data: { id: item.id } }).then(res => {
+                        console.log(res)
+                        router.push('/')
+                    })
+                })
+
+            })
+        }
+
     }
 
     useEffect(() => {
@@ -93,19 +133,27 @@ const page = () => {
                         <BreadcrumbItem>
                             <BreadcrumbPage className="text-white">order</BreadcrumbPage>
                         </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        {state == 0 ? <BreadcrumbItem>
+                            <BreadcrumbPage className="text-white">Delivery Info</BreadcrumbPage>
+                        </BreadcrumbItem> : <BreadcrumbItem>
+                            <BreadcrumbPage className="text-white">Confirm Order</BreadcrumbPage>
+                        </BreadcrumbItem>}
                     </BreadcrumbList>
                 </Breadcrumb>
             </div>
-            <div className='flex justify-between gap-2 p-5'>
-                <div className='flex flex-col gap-4'>
-                    <div className='flex flex-col gap-4'>
+            <div className='p-5 flex justify-between gap-6'>
+                <div className='flex flex-col gap-4 items-start justify-center'>
+                    {state == 0 ? <div className='flex items-center justify-center rounded-lg flex-col gap-6 border p-5'>
+                        <h2 className='text-xl text-primary mt-4'>Select Delivery Type and Desired Ready Date </h2>
+                        <h2 className='text-sm text-white'>Nb: The earliest date for {delivery ? 'delivery' : 'pick-up'} is {minReady?.toLocaleDateString()}</h2>
                         <div className='flex gap-4 items-center justify-start'>
-                            <Button onClick={() => { setDelivery(true); setFee(20) }} className={`${delivery === true ? 'bg-primary outline-none' : "bg-transparent outline outline-secondary-foreground"}`}>Delivery (Fee: $20)</Button>
-                            <Button onClick={() => { setDelivery(false); setFee(0) }} className={`${delivery === false ? 'bg-primary outline-none' : "bg-transparent outline outline-secondary-foreground"}`}>Pick Up</Button>
+                            <Button onClick={() => { setDelivery(true); setFee(20) }} className={`${delivery === true ? 'bg-primary outline-none' : "bg-transparent outline outline-secondary-foreground"}  h-8 p-4 text-lg`}>Delivery (Fee: $20)</Button>
+                            <Button onClick={() => { setDelivery(false); setFee(0) }} className={`${delivery === false ? 'bg-primary outline-none' : "bg-transparent outline outline-secondary-foreground"} h-8 p-4 text-lg`}>Pick Up</Button>
                         </div>
                         <div>
                             {delivery ? <div>
-                                <Textarea value={address} onChange={(e) => setAddress(e.target.value)} placeHolder="Enter Delivery Address here" />
+                                <Textarea className='text-white w-[300px]' value={address} onChange={(e) => setAddress(e.target.value)} placeHolder="Enter Delivery Address here" />
                             </div> : null}
                         </div>
                         <div className='text-white'>
@@ -115,38 +163,41 @@ const page = () => {
                                 onSelect={(date) => setReadyDate(date)}
                                 className="rounded-lg w-[250px] border"
                             />
-                            <h2 className='text-white my-4'>Date of {delivery ? 'delivery' : 'pick-up'}: {readyDate?.toLocaleDateString()}</h2>
+                            <h2 className='text-white mt-4'>Date of {delivery ? 'delivery' : 'pick-up'}: {readyDate?.toLocaleDateString()}</h2>
                         </div>
-                    </div>
-                    <h2 className='text-primary text-3xl'>Order Items</h2>
-                    <ScrollArea className='w-full h-[250px] overflow-x-auto'>
-                        <div className='flex gap-4'>
+                        <Button disabled={delivery && !address} onClick={() => setState(1)}>Next</Button>
+                    </div> : <div className='w-[500px] h-[400px] border m-5 rounded-lg p-3 justify-evenly flex flex-col gap-4'>
+                        <h2 className='text-primary text-3xl'>Order Summary</h2>
+                        <h2 className='text-white flex items-center justify-between text-xl'><span>Address:</span><span>{delivery ? address : ' (pick-up)'}</span> </h2>
+                        <h2 className='text-white flex items-center justify-between text-xl'><span>Subtotal:</span><span>CA${Subtotal.toFixed(2)}</span> </h2>
+                        <h2 className='text-white flex items-center justify-between text-xl'><span>Delivery Fee:</span><span>CA${fee} </span> </h2>
+                        <h2 className='text-white flex items-center justify-between text-xl'><span>Taxes:</span><span>CA${Number(0.03 * Subtotal).toFixed(2)}</span> </h2>
+                        <hr />
+                        <h2 className='text-white flex items-center justify-between text-2xl'><span className='font-bold'>Grand Total: </span><span className='font-extrabold text-primary'>CA${total.toFixed(2)}</span> </h2>
+                        <div className='flex gap-2 items-center'>
+                            <Button onClick={() => setState(0)} variant="outline">Back</Button>
+                            <Button onClick={() => placeOrder()} className='my-2'>Confirm Order</Button>
+                        </div>
+                    </div>}
+                </div>
+                <div>
+                    <h2 className='text-primary text-3xl'>Items for Order</h2>
+                    <ScrollArea className='w-[900px] h-[350px] overflow-x-hidden'>
+                        <div className='flex gap-2'>
                             {items.map((item, key) => (
                                 <CartItem
                                     noextra={true}
                                     item={item}
                                     refreshData={getItems}
                                     key={key}
-                                    className="min-w-[200px] w-auto"
+                                    className="w-full"
                                 />
                             ))}
                         </div>
                         <ScrollBar orientation="horizontal" />
                     </ScrollArea>
                 </div>
-                <div className='flex flex-col gap-4'>
 
-
-                </div>
-                <div className='w-[500px] h-[320px] border m-5 rounded-lg p-3 justify-evenly flex flex-col gap-4'>
-                    <h2 className='text-primary text-3xl'>Order Summary</h2>
-                    <h2 className='text-white flex items-center justify-between text-xl'><span>Subtotal:</span><span>CA${Subtotal}</span> </h2>
-                    <h2 className='text-white flex items-center justify-between text-xl'><span>Delivery Fee:</span><span>CA${fee}</span> </h2>
-                    <h2 className='text-white flex items-center justify-between text-xl'><span>Taxes:</span><span>CA${Number(0.03 * Subtotal)}</span> </h2>
-                    <hr />
-                    <h2 className='text-white flex items-center justify-between text-2xl'><span className='font-bold'>Grand Total: </span><span className='font-extrabold text-primary'>CA${total}</span> </h2>
-                    <Button className='my-2'>Confirm Order</Button>
-                </div>
             </div>
         </div>
     )
