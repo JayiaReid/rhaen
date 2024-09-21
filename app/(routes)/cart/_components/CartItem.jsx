@@ -38,7 +38,6 @@ const CartItem = ({ item, refreshData, noextra }) => {
             user_id: item.user_id,
             ...cake
         }).then(res=>{
-            // delete item from cart
             toast({
                 title: "item moved to wishlist"
             })

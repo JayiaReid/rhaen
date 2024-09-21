@@ -10,8 +10,6 @@ const pool = new Pool({
   },
 });
 
-
-
 export async function POST(req){
 
   const cartItem = await req.json();

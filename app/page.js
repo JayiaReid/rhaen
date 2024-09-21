@@ -19,6 +19,7 @@ import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import CardComp from "./_components/Card";
+import { toast } from "@/hooks/use-toast";
 
 // add to toasts, add account page, checkout
 
@@ -66,7 +67,11 @@ export default function Home() {
       console.log(res)
       setReview('')
       setTitle('')
+      toast({
+        title: "review added. Thank you!"
+      })
       fetchReviews()
+
     })
   }
 

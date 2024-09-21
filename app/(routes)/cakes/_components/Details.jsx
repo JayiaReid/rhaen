@@ -77,7 +77,6 @@ const Details = ({ cake }) => {
         SetNum(num)
         setTotal(total_ratings)
         setAvg(total_ratings/num)
-        
     }
 
     const addRating = async ()=>{
@@ -89,9 +88,10 @@ const Details = ({ cake }) => {
             toast({
                 title: "Rating added!"
             })
+            setRate(0)
+            getRating()
         })
-        setRate(0)
-        getRating()
+        
     }
 
     const addToWishlist = async () =>{

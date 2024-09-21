@@ -26,6 +26,7 @@ const page = () => {
     const [total, setTotal] = useState(0)
     const [state, setState] = useState(0)
     const [minReady, setMin] = useState(null)
+    const [orderInfo, setOrderInfo]=useState([])
 
     const router = useRouter()
 
@@ -43,6 +44,23 @@ const page = () => {
         setReadyDate(minReady);
         setMin(minReady)
     }, [items])
+
+    const setOrder = ()=>{
+
+        items.forEach(item=>{
+            let info = {
+                cake_id: item.cake_id,
+                size: item.size,
+                quantity: item.quantity,
+                notes: item.notes,
+                price: item.price,
+                user: user.fullName,
+                order_id: item.id
+            }
+            orderInfo.push(info)
+        })
+
+    }
 
     const getItems = async () => {
         axios.get('/api/cart').then(res => {
@@ -83,10 +101,13 @@ const page = () => {
                     title: "Order Placed",
                     description: `Order will be ready ${readyDate.toLocaleDateString()}. you will be emailed about further details when order is ready. Go to account to see order details.`,
                 })
+
+                setOrder()
+                
                 emailjs.send("Rhaen", "template_o6ezvob", {
                     from_name: user.fullName,
                     user_id: user.id,
-                    cart_items: JSON.stringify(items),
+                    cart_items: JSON.stringify(orderInfo),
                     total_price: total,
                     delivery: delivery,
                     ready_date: readyDate,
