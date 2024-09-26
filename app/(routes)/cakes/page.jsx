@@ -7,12 +7,12 @@ import Link from 'next/link';
 const page = () => {
   return (
     <div className='overflow-y-hidden'>
-      <div className="w-screen lg:h-screen sm:hidden lg:block">
-        <video autoPlay muted loop className="fixed top-0 left-0 min-w-[100%] object-fill z-[-1]">
+      <div className="w-screen h-screen">
+        <video autoPlay muted loop className="video-background">
           <source src="https://assets.mixkit.co/videos/24690/24690-720.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="flex gap-8 h-screen items-center justify-center">
+        <div className="flex sm:mx-10 md:flex-row gap-8 h-screen items-center justify-center">
           <Card className="h-[450px] w-[500px] border-none bg-black duration-200 hover:translate-y-[-10px] hover: shadow-md">
             <CardContent className="p-6">
               <div className="text-center flex flex-col gap-4">

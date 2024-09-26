@@ -7,9 +7,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { ArrowBigDown, LoaderPinwheelIcon } from "lucide-react";
+import { ArrowBigDown, ArrowBigDownDash, LoaderPinwheelIcon } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -30,6 +30,7 @@ export default function Home() {
   const [reviews, setReviews] = useState([])
   const [recipe, setRecipe] = useState({})
   const [loading, setLoading]=useState(true)
+  const nextSectionRef = useRef(null);
 
   useEffect( () => {
     
@@ -75,22 +76,29 @@ export default function Home() {
     })
   }
 
+  const scrollToNextSection = () => {
+    nextSectionRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   if (loading) return <div className="h-screen w-screen flex items-center justify-center">
       <LoaderPinwheelIcon className="animate-spin text-primary"/>
   </div>
 
   return (
     <div className="h-screen ">
-      <div className="w-screen lg:h-screen sm:hidden lg:block">
-        <video autoPlay muted loop className="fixed top-0 left-0 min-w-[100%] object-fill z-[-1]">
+      <div className="w-screen h-auto">
+        <video autoPlay muted loop className="video-background">
           <source src="https://assets.mixkit.co/videos/26640/26640-720.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-        <div className="flex h-[90%] w-[100%] items-center justify-center">
-          <h2 className="text-6xl text-black font-bold border-l-4 border-l-black bg-opacity-10 bg-black p-5">Order Your Fav Cakes or Discover Recipes!</h2>
+        <div className="flex flex-col h-[80vh] border-black shadow-xl border-4 rounded-lg mx-10 mt-10 w-auto md:bg-opacity-10 bg-white items-center justify-center">
+          <h2 className="md:text-6xl sm:text-4xl text-black font-thin sm:border-none  rounded-lg sm:p-none md:p-10">Order Your Fav Cakes or Discover Recipes!</h2>
+          <Button onClick={scrollToNextSection} className="">
+            <ArrowBigDownDash strokeWidth={0.75}/>
+          </Button>
         </div>
       </div>
-      <div className="bg-black h-auto flex flex-col items-center justify-center">
+      <div ref={nextSectionRef} className="bg-black h-auto flex flex-col items-center justify-center mt-20">
         <h2 className="text-primary-foreground text-2xl m-4">Top Orders. <span className="text-primary">See what our customers are loving. </span></h2>
         <Carousel opts={{ align: "start" }} className="w-full max-w-[80%] max-h-[100%]">
           <CarouselContent className="max-w-[90%]">
@@ -118,7 +126,7 @@ export default function Home() {
                 One of most popular recipes viewed today.
               </CardDescription>
             </CardHeader>
-            <div className="flex items-center justify-evenly gap-6 ">
+            <div className="flex sm:flex-col items-center justify-evenly gap-6 ">
               {recipe.image ? (
                 <Image
                   src={recipe.image}
@@ -131,11 +139,17 @@ export default function Home() {
                 <span className="text-3xl font-semibold">{recipe.name}</span>
               )}
               <div className="flex gap-2 flex-col">
+                
                 <h2 className="text-white text-lg font-bold">{recipe.name}</h2>
-                <h2 className="font-bold text-primary underline">Ingredients</h2>
+                <div>
+                  <h2 className="font-bold text-primary underline">Ingredients</h2>
                 <h2 className="text-white">{recipe.ingredients}</h2>
-                <h2 className="font-bold text-primary underline">Instructions</h2>
+                </div>
+                <div>
+                  <h2 className="font-bold text-primary underline">Instructions</h2>
                 <h2 className="text-white">{recipe.instructions}</h2>
+                </div>
+                
               </div>
               
             </div>

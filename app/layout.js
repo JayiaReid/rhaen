@@ -10,7 +10,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "Rhaen",
-  description: "Luxury Fashion Brand",
+  description: "Cake Store",
 };
 
 export default function RootLayout({ children }) {
