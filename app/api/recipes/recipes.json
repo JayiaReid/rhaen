@@ -195,5 +195,216 @@
         "Pour half the batter into pans. Drop spoonfuls of raspberry puree on top and swirl with a knife.",
         "Pour the remaining batter over and bake for 30-35 minutes."
       ]
+    }, 
+    {
+      "id": 9,
+      "name": "Echame",
+      "image": "/echame.jpg",
+      "description": "A moist and spiced cake infused with coconut and topped with a creamy pineapple frosting.",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "1 cup sugar",
+        "1/2 cup unsweetened shredded coconut",
+        "1/2 cup unsalted butter, softened",
+        "1 cup buttermilk",
+        "3 large eggs",
+        "1 tsp baking powder",
+        "1 tsp baking soda",
+        "1/2 tsp salt",
+        "1 tsp vanilla extract",
+        "1/2 cup crushed pineapple, drained",
+        "1 cup powdered sugar (for frosting)",
+        "1/4 cup butter, softened (for frosting)",
+        "1/4 cup pineapple juice (for frosting)"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour two 9-inch round cake pans.",
+        "In a mixing bowl, cream together the butter and sugar until fluffy. Add eggs one at a time, then mix in vanilla.",
+        "Combine flour, baking powder, baking soda, salt, and shredded coconut. Gradually add to the wet mixture, alternating with buttermilk.",
+        "Fold in crushed pineapple. Divide batter between prepared pans.",
+        "Bake for 25-30 minutes or until a toothpick comes out clean. Cool completely.",
+        "For the frosting, beat together softened butter and powdered sugar, then mix in pineapple juice until smooth.",
+        "Frost the cooled cakes and enjoy!"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Lemon Blueberry Bundt Cake",
+      "image": "/lemon_b.jpg",
+      "description": "A light and zesty bundt cake studded with fresh blueberries.",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "1/2 cup unsalted butter, softened",
+        "1 cup buttermilk",
+        "3 large eggs",
+        "2 tsp baking powder",
+        "1 tsp baking soda",
+        "1/2 tsp salt",
+        "1 tbsp lemon zest",
+        "1 cup fresh blueberries"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease a bundt pan.",
+        "In a bowl, cream butter and sugar until light and fluffy. Add eggs and lemon zest, mixing well.",
+        "In another bowl, combine flour, baking powder, baking soda, and salt.",
+        "Add the dry ingredients alternately with buttermilk to the butter mixture, mixing until just combined.",
+        "Gently fold in blueberries. Pour batter into the prepared bundt pan.",
+        "Bake for 50-60 minutes or until a toothpick comes out clean. Let cool before serving."
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Spiced Pumpkin Bread",
+      "image": "/spiced.jpg",
+      "description": "Moist pumpkin bread with warming spices, perfect for fall.",
+      "ingredients": [
+        "1 3/4 cups all-purpose flour",
+        "1 cup sugar",
+        "1/2 cup vegetable oil",
+        "1 cup canned pumpkin puree",
+        "2 large eggs",
+        "1 tsp baking powder",
+        "1 tsp baking soda",
+        "1/2 tsp salt",
+        "1 tsp cinnamon",
+        "1/2 tsp nutmeg",
+        "1/2 cup chopped walnuts (optional)"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease a loaf pan.",
+        "In a large bowl, mix together flour, sugar, baking powder, baking soda, salt, cinnamon, and nutmeg.",
+        "In another bowl, whisk together oil, pumpkin puree, and eggs.",
+        "Combine the wet and dry ingredients, mixing until just combined. Fold in walnuts if using.",
+        "Pour the batter into the prepared loaf pan and bake for 60-70 minutes or until a toothpick comes out clean."
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Matcha Green Tea Cake",
+      "image": "/matcha.jpg",
+      "description": "A unique cake infused with earthy matcha green tea flavor and topped with a light frosting.",
+      "ingredients": [
+        "1 1/2 cups all-purpose flour",
+        "1 cup sugar",
+        "1/2 cup unsalted butter, softened",
+        "3 large eggs",
+        "1/2 cup milk",
+        "1/4 cup matcha green tea powder",
+        "1 tsp baking powder",
+        "1/2 tsp baking soda",
+        "1/2 tsp salt"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour two 9-inch cake pans.",
+        "Cream together butter and sugar until fluffy. Add eggs one at a time, then mix in milk.",
+        "In a separate bowl, combine flour, matcha, baking powder, baking soda, and salt.",
+        "Gradually add dry ingredients to the wet mixture, mixing until well combined.",
+        "Divide batter between prepared pans and bake for 25-30 minutes or until a toothpick comes out clean."
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Peach Cobbler Cake",
+      "image": "/peach.jpg",
+      "description": "A delightful cake with juicy peaches and a buttery crumble topping.",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "1 cup sugar",
+        "1/2 cup unsalted butter, softened",
+        "1 cup buttermilk",
+        "3 large eggs",
+        "1 tsp baking powder",
+        "1 tsp baking soda",
+        "1/2 tsp salt",
+        "2 cups sliced fresh peaches",
+        "1/2 cup brown sugar (for topping)",
+        "1/4 cup oats (for topping)"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease a 9x13-inch baking dish.",
+        "In a large bowl, cream together butter and sugar until fluffy. Add eggs and mix well.",
+        "In another bowl, combine flour, baking powder, baking soda, and salt.",
+        "Add the dry ingredients alternately with buttermilk to the butter mixture.",
+        "Pour batter into the prepared dish and top with sliced peaches. Mix brown sugar and oats, sprinkle over peaches.",
+        "Bake for 35-40 minutes until golden brown."
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Chocolate Zucchini Cake",
+      "image": "/z.jpg",
+      "description": "A rich and moist chocolate cake with hidden zucchini for added moisture.",
+      "ingredients": [
+        "1 1/2 cups all-purpose flour",
+        "1 cup cocoa powder",
+        "1 1/2 cups sugar",
+        "1 tsp baking powder",
+        "1 tsp baking soda",
+        "1/2 tsp salt",
+        "1/2 cup vegetable oil",
+        "3 large eggs",
+        "2 cups grated zucchini",
+        "1 tsp vanilla extract"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour a 9x13-inch baking pan.",
+        "In a large bowl, mix flour, cocoa powder, sugar, baking powder, baking soda, and salt.",
+        "In another bowl, whisk together oil, eggs, grated zucchini, and vanilla.",
+        "Combine the wet and dry ingredients and mix until just combined.",
+        "Pour batter into the prepared pan and bake for 30-35 minutes or until a toothpick comes out clean."
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Almond Joy Cake",
+      "image": "/aj.jpg",
+      "description": "A decadent chocolate cake layered with coconut and topped with almonds.",
+      "ingredients": [
+        "1 3/4 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "1/2 cup unsweetened cocoa powder",
+        "1 tsp baking powder",
+        "1 tsp baking soda",
+        "1/2 tsp salt",
+        "1/2 cup vegetable oil",
+        "3 large eggs",
+        "1 cup buttermilk",
+        "1 cup shredded coconut",
+        "1/2 cup chopped almonds"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease two 9-inch round cake pans.",
+        "In a large bowl, combine flour, sugar, cocoa powder, baking powder, baking soda, and salt.",
+        "In another bowl, whisk together oil, eggs, and buttermilk.",
+        "Add wet ingredients to dry ingredients and mix until well combined.",
+        "Divide batter between prepared pans and sprinkle shredded coconut and chopped almonds on top.",
+        "Bake for 30-35 minutes or until a toothpick comes out clean."
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Blueberry Lemonade Cake",
+      "image": "/bl.jpg",
+      "description": "A refreshing cake with a zesty lemon flavor and bursts of blueberries.",
+      "ingredients": [
+        "2 cups all-purpose flour",
+        "1 1/2 cups sugar",
+        "1/2 cup unsalted butter, softened",
+        "1 cup buttermilk",
+        "3 large eggs",
+        "1 tsp baking powder",
+        "1 tsp baking soda",
+        "1/2 tsp salt",
+        "1 tbsp lemon zest",
+        "1 cup fresh blueberries"
+      ],
+      "instructions": [
+        "Preheat oven to 350°F (175°C). Grease and flour two 9-inch round cake pans.",
+        "Cream together butter and sugar until light and fluffy. Add eggs and lemon zest, mixing well.",
+        "In another bowl, combine flour, baking powder, baking soda, and salt.",
+        "Add the dry ingredients alternately with buttermilk to the butter mixture, mixing until just combined.",
+        "Gently fold in blueberries. Divide batter between prepared pans and bake for 25-30 minutes or until a toothpick comes out clean."
+      ]
     }
 ]
