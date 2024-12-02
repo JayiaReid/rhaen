@@ -81,3 +81,41 @@ export async function DELETE(req) {
     });
   }
 }
+
+export async function PUT(req) {
+  const { id, status } = await req.json();
+
+  if (!id || !status) {
+    return new Response(JSON.stringify({ error: 'Order ID and status are required' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const query = `
+    UPDATE orders
+    SET status = $1
+    WHERE id = $2
+    RETURNING *;
+  `;
+
+  try {
+    const res = await pool.query(query, [status, id]);
+    if (res.rows.length === 0) {
+      return new Response(JSON.stringify({ error: 'Order not found' }), {
+        status: 404,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    return new Response(JSON.stringify({ message: 'Order updated!', order: res.rows[0] }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: 'Error updating order' }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+}

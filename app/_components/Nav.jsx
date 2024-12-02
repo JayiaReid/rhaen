@@ -31,7 +31,7 @@ const Nav = () => {
                     <ShoppingBasket strokeWidth={0.75} size={30} />
                 </Link>
                 
-                {/* <ListFilter strokeWidth={0.75} onClick={()=>setShowCat(!showCat)}/> */}
+               
             </div>
 
         </div>
