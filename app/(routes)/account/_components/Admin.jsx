@@ -136,39 +136,7 @@ const Admin = () => {
       {/* orders */}
       <div className="p-5">
       <h2 className="text-2xl text-center text-white font-bold my-6">Orders</h2>
-        {/* <div className="flex gap-2 my-6"> */}
-            
-          {/* <Button
-            onClick={() => setType("orders")}
-            className={`${
-              type == "orders"
-                ? "bg-primary outline-none"
-                : "bg-transparent outline outline-secondary-foreground"
-            }`}
-          >
-            Orders
-          </Button> */}
-          {/* <Button
-            onClick={() => setType("cakes")}
-            className={`${
-              type == "cakes"
-                ? "bg-primary outline-none"
-                : "bg-transparent outline outline-secondary-foreground"
-            }`}
-          >
-            Cakes
-          </Button>
-          <Button
-            onClick={() => setType("recipes")}
-            className={`${
-              type == "recipes"
-                ? "bg-primary outline-none"
-                : "bg-transparent outline outline-secondary-foreground"
-            }`}
-          >
-            Recipes
-          </Button> */}
-        {/* </div> */}
+        
         {type === "orders" && (
           <div>
             <div className="grid grid-cols-3 gap-3 p-3">
@@ -257,64 +225,6 @@ const Admin = () => {
           </div>
         )}
 
-        {/* {type === "cakes" && (
-          <div >
-            <h2 className="text-white text-2xl mb-4">Manage Cakes</h2>
-            <Button onClick={handleCreateCake} className="mb-4">
-              Add Cake
-            </Button>
-            <div className="flex flex-wrap gap-5">
-
-            {cakes.map((cake) => (
-              <div key={cake.id} className="p-5 flex flex-col justify-between  gap-2 w-[300px] text-white border rounded-lg mb-3">
-                <div className="h-[250px] rounded-lg w-[250px] flex self-center  object-cover">
-                <Image className="object-cover rounded-lg h-full w-full" src={cake.image} height={200} width={200}/>
-                </div>
-                <h3 className="text-xl underline">{cake.name} ({cake.id})</h3>
-                <p>Description: {cake.description}</p>
-                <p>Small price: ${cake.small}</p>
-                <p>Med price: ${cake.med}</p>
-                <p>Large price: ${cake.large}</p>
-                <div className="flex mt-3 justify-between">
-                <Button
-                  onClick={() => handleUpdateCake(cake.id)}
-                  className=""
-                >
-                  Edit
-                </Button>
-                <Button className="bg-transparent border-primary" variant="outline" onClick={() => handleDeleteCake(cake.id)}>
-                  Delete
-                </Button>
-                </div>
-              </div>
-            ))}
-            </div>
-          </div>
-        )} */}
-
-        {/* {type === "recipes" && (
-          <div>
-            <h2 className="text-white text-2xl mb-4">Manage Recipes</h2>
-            <Button onClick={handleCreateRecipe} className="mb-4">
-              Add Recipe
-            </Button>
-            {recipes.map((recipe) => (
-              <div key={recipe.id} className="p-3 border rounded mb-3">
-                <h3 className="text-xl">{recipe.name}</h3>
-                <p>Ingredients: {recipe.ingredients.join(", ")}</p>
-                <Button
-                  onClick={() => handleUpdateRecipe(recipe.id)}
-                  className="mr-2"
-                >
-                  Edit
-                </Button>
-                <Button onClick={() => handleDeleteRecipe(recipe.id)}>
-                  Delete
-                </Button>
-              </div>
-            ))}
-          </div>
-        )} */}
       </div>
 
       {/*  cards: unprocessed orders, to be completed, completed */}

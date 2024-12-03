@@ -67,6 +67,7 @@ const OrderItem = ({ admin, order, curr, refreshData }) => {
       setLoading(false);
     };
 
+    console.log(order)
     fetchCakeNames();
   }, [order]);
 

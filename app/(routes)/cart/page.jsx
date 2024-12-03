@@ -23,7 +23,7 @@ const Cart = () => {
     if (!isSignedIn) {
       router.push('/sign-in');
     }
-  }, [isSignedIn, user, router]);
+  }, [isSignedIn, isLoaded, user]);
 
   const getItems = async () => {
     axios.get('/api/cart').then(res => {
@@ -79,9 +79,9 @@ const Cart = () => {
       </div>
       <div className='grid md:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1'>
         <div className='flex flex-col gap-4'>
-          {items.map((item, key) => (
+          {items.length> 0? items.map((item, key) => (
             <CartItem item={item} refreshData={() => getItems()} />
-          ))}
+          )): <h2 className='text-white text-center p-6 mt-5 text-2xl'>No Items yet. <Link className='text-primary underline' href={'/cakes/sellers'}>Continue Shopping</Link> </h2>}
         </div>
         <div className='h-[200px] border m-5 rounded-lg p-3 justify-evenly flex flex-col gap-4'>
           <h2 className='text-primary text-3xl'>Order Summary</h2>

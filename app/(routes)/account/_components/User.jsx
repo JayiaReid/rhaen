@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button'
 
 const UserAccount = () => {
 
-  const { user, isSignedIn } = useUser()
+  const { user, isSignedIn, isLoaded } = useUser()
   const router = useRouter()
   const [prevOrders, setPrevOrders] = useState([])
   const [currOrder, setCurrOrders] = useState([])
@@ -24,16 +24,16 @@ const UserAccount = () => {
       router.push('/sign-in');
     } else {
       getOrder()
-      setLoading(false)
+      // setLoading(false)
     }
-  }, [isSignedIn, user, router]);
+  }, [isSignedIn, isLoaded, user]);
 
   const getOrder = async () => {
     axios.get('/api/orders').then(res => {
       const filtered = res.data.filter(order => order.user_id == user.id)
       const sortedOrders = filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       const prevOrders = filtered.filter(order => order.status == "done")
-      const currOrders = filtered.filter(order => order.status == "not started")
+      const currOrders = filtered.filter(order => order.status != "done")
       setCurrOrders(currOrders)
       setPrevOrders(prevOrders)
       console.log(filtered)
@@ -45,6 +45,7 @@ const UserAccount = () => {
 //   </div>
 
   return (
+    // set up user with phone number, first name, last name, email
     <div>
       <div className='p-5'>
         <Breadcrumb>
