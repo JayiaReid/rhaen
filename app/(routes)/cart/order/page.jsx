@@ -94,7 +94,8 @@ const page = () => {
                 total_price: total,
                 delivery: delivery,
                 ready_date: readyDate,
-                address: address
+                address: address,
+                user_name: user.fullName
             }).then(res => {
                 console.log(res)
                 toast({

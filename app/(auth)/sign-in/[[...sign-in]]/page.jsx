@@ -5,9 +5,6 @@ import { useRouter } from 'next/navigation'
 
 export default function Page() {
 
-  const router = useRouter()
-  const previousUrl = router.back()
-
   return <div className='flex  p-10 bg-no-repeat items-center justify-left h-[750px] gap-8 '>
     <div className="w-screen sm:hidden lg:block">
         <video autoPlay muted loop className="fixed top-0 left-0 min-w-[100%] object-fill z-[-1]">

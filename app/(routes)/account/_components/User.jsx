@@ -9,6 +9,8 @@ import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import OrderItem from './OrderItem'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 
 const UserAccount = () => {
 
@@ -18,25 +20,63 @@ const UserAccount = () => {
   const [currOrder, setCurrOrders] = useState([])
   const [loading, setLoading] = useState(true)
   const [type, setType] = useState(true)
+  const [first, setFirst] = useState('')
+  const [last, setLast] = useState('')
+  const [phone, setPhone] = useState('')
+  const [notfound, setNotFound] = useState(false)
+  const [userData, setUserData] = useState({})
 
   useEffect(() => {
     if (!isSignedIn) {
       router.push('/sign-in');
     } else {
+      if(user){
+        checkUserExists()
+      }
+      
       getOrder()
       // setLoading(false)
     }
   }, [isSignedIn, isLoaded, user]);
 
+  const checkUserExists = async () => {
+    try {
+      const response = await axios.get(`/api/user?id=${user?.id}`);
+      setUserData(response.data)
+    } catch (error) {
+      if (error.response?.status === 404) {
+        setNotFound(true)
+      }
+      console.error('Error checking user:', error.message);
+      throw error; 
+    }
+  };
+
+  const createUser = async ()=>{
+    const userData = {
+      id: user?.id,
+      email: user?.emailAddresses[0],
+      firstName: first,
+      lastName: last,
+      phone
+    }
+
+    try {
+      axios.post('/api/user', userData)
+    } catch (error) {
+      console.error(error)
+    }
+    
+  }
+
   const getOrder = async () => {
     axios.get('/api/orders').then(res => {
       const filtered = res.data.filter(order => order.user_id == user.id)
-      const sortedOrders = filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+      // const sortedOrders = filtered.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
       const prevOrders = filtered.filter(order => order.status == "done")
-      const currOrders = filtered.filter(order => order.status != "done")
+      const currOrders = filtered.filter(order => order.status !== "done")
       setCurrOrders(currOrders)
       setPrevOrders(prevOrders)
-      console.log(filtered)
     })
   }
 
@@ -63,7 +103,49 @@ const UserAccount = () => {
       <div className='p-5'>
         <div className='col-span-3'>
           <h2 className='text-4xl my-6 text-primary flex items-center gap-4'><UserButton />Welcome {user.fullName}!</h2>
+          {notfound && <form className='p-5 border rounded-xl'>
+            <h2 className='text-white font-bold text-xl'>Finish User Set Up</h2>
+        <div className='text-white flex  gap-5 mt-5'><Label htmlFor="firstName" className='text-white'>First Name:</Label>
+        <Input
+          type="text"
+          id="firstName"
+          name="firstName"
+          value={first}
+          onChange={setFirst}
+          required
+        />
+        <Label htmlFor="lastName">Last Name:</Label>
+        <Input
+          type="text"
+          id="lastName"
+          name="lastName"
+          value={last}
+          onChange={setLast}
+          required
+        />
+      </div>
+      <div className='text-white flex  gap-5 my-5'>
+        <Label htmlFor="phone">Phone:</Label>
+        <Input
+          type="text"
+          id="phone"
+          name="phone"
+          value={phone}
+          onChange={setPhone}
+          required
+        />
+        <Label htmlFor="email" >Email:</Label>
+        <Input
+          type="email"
+          id="email"
+          name="email"
+          value={user?.emailAddresses[0]}
+          readOnly
+        />
+      </div>
 
+      <Button className='' onClick={()=>createUser()} type="submit" >Submit</Button>
+    </form>}
           <div>
             <div className='flex gap-2 my-6'>
               <Button onClick={() => setType(true)} className={`${type == true ? 'bg-primary outline-none' : "bg-transparent outline outline-secondary-foreground"}`}>Current Orders</Button>

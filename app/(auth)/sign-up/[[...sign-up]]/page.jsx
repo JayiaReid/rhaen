@@ -8,7 +8,7 @@ export default function Page() {
           <source src="https://assets.mixkit.co/videos/41108/41108-720.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-    <SignUp afterSignUpUrl={()=> router.back()} signInUrl='/sign-in'/>
+    <SignUp afterSignUpUrl={'/account'} signInUrl='/sign-in'/>
     </div>
     </div>
 }

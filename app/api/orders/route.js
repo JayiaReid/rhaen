@@ -12,8 +12,8 @@ export async function POST(req) {
   const order = await req.json();
 
   const query = `
-    INSERT INTO orders (user_id, cart_items, total_price, delivery, ready_date, status, address)
-    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    INSERT INTO orders (user_id, cart_items, total_price, delivery, ready_date, status, address, user_name)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
     RETURNING *;
   `;
 
@@ -24,7 +24,8 @@ export async function POST(req) {
     order.delivery,
     order.ready_date,
     order.status || 'not started',
-    order.address
+    order.address,
+    order.user_name
   ];
 
   try {

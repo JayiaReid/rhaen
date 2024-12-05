@@ -60,7 +60,7 @@ const OrderItem = ({ admin, order, curr, refreshData }) => {
       const names = {};
       for (let item of order.cart_items) {
         const cakeName = await getCakeName(item.cake_id);
-       notes.length >0 ? setNote(notes + ':' + item.notes) : setNote(item.notes)
+       notes.length > 0 ? setNote(...notes + ':' + item.notes) : setNote(item.notes)
         names[item.cake_id] = cakeName;
       }
       setCakeNames(names);
@@ -87,7 +87,7 @@ const OrderItem = ({ admin, order, curr, refreshData }) => {
           {item.quantity} {item.size} {cakeNames[item.cake_id]}
         </h2>
       ))}
-      <h2>{order.delivery ? "Delivery" : "Pick up"}</h2>
+      <h2>{order.delivery ? "Delivery" : "Pick up"} for {order.user_name}</h2>
       <h2>{order.delivery ? `Address: ${order.address}` : null}</h2>
       <h2>{notes && <span>notes: {notes}</span>}</h2>
       <h2>Total: ${Number(order.total_price).toFixed(2)}</h2>
