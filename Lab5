@@ -1,0 +1,21 @@
+The similarities between nextjs and MERN stack:
+
+1. JavaScript-based
+   Both use JavaScript extensively:
+   - Next.js is a React framework, so it utilizes JavaScript (or typescript) for building frontend components and server-side logic
+   - The MERN stack revolves around JavaScript as well
+
+2. React for Frontend Development
+   - Next.js is built on top of React with added like server-side rendering and API routes
+   - The MERN stack uses React for building UI
+
+3. Backend and API Handling 
+   - In Next.js, backend APIs can be built using API routes similar to Express routes in the MERN stack
+   - MERN utilizes Express with Node.js for handling server-side logic and APIs
+
+ 4. Both can be used for full-stack development:
+   - Next.js uses backend logic and frontend in the same project
+   - The MERN stack separates frontend (React) and backend (Express/Node.js) but can be a unified system
+
+What I learnt:
+I started this project for fun in October and used it to solidify my understand of creating a nextjs application and I also learnt is how to implement cloud based database (vercel postgresql).
